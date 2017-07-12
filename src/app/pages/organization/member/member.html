@@ -1,0 +1,82 @@
+<div ba-panel  ba-panel-class="with-scroll" >
+    <div class="add-row-editable-table">
+        <div class="form-group col-sm-3 col-xs-6" >
+            <input  class="form-control"  placeholder="搜索名称" ng-model="username" >
+        </div>
+        <button ng-click="searchUser()" class="btn btn-info">搜索</button>
+        <button class="btn btn-primary" ng-click="open('app/pages/organization/member/add.html', 'md',user,false)">新增</button>
+    </div>
+    <div ng-if=" users.length">
+        <table class="table table-bordered table-hover table-condensed" >
+            <tr>
+                <td>id</td>
+                <td>用户名</td>
+                <td>真实名称</td>
+                <td>绑定分机</td>
+                <td>角色</td>
+                <td>部门</td>
+                <td>性别</td>
+                <td>隐藏状态</td>
+                <td>弹屏状态</td>
+                <td>当前状态</td>
+                <td>操作</td>
+            </tr>
+            <tr dir-paginate="user in users | itemsPerPage: pageSize"   current-page="current"  total-items = "totalPages" class="editable-row">
+                <td>
+                    {{ user.id}}
+                </td>
+                <td>
+                    <span editable-text="user.username" e-name="username" e-form="rowform" >
+                      {{ user.username || 'empty' }}
+                    </span>
+                </td>
+                <td class="select-td">
+                    <span editable-text="user.nickname" e-name="nickname" e-form="rowform">
+                       {{ user.nickname || 'empty' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.opt_number" e-name="opt_number" e-form="rowform" e-required>
+                      {{ user.opt_number || 'empty' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.character_name" e-name="character_name" e-form="rowform" e-required>
+                      {{ user.character_name || 'empty' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.department_name" e-name="department_name" e-form="rowform" e-required>
+                      {{ user.department_name || 'empty' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.sex" e-name="sex" e-form="rowform" e-required>
+                      {{getSex(user)}}
+                    </span>
+                </td>                <td>
+                    <span editable-text="user.hide_caller" e-name="hide_caller" e-form="rowform" e-required>
+                      {{ getBool(user.hide_caller)}}
+                    </span>
+            </td>                <td>
+                    <span editable-text="user.call_shell" e-name="call_shell" e-form="rowform" e-required>
+                      {{ getBool(user.call_shell) }}
+                    </span>
+            </td>                <td>
+                    <span editable-text="user.enable" e-name="enable" e-form="rowform" e-required>
+                      {{ getBool(user.enable) }}
+                    </span>
+            </td>
+
+                <td>
+                    <div class="buttons" ng-show="!rowform.$visible">
+                        <button class="btn btn-primary editable-table-button btn-xs" ng-click="open('app/pages/organization/member/edit.html', 'md',user,true)">编辑</button>
+                        <button class="btn btn-danger editable-table-button btn-xs" ng-click="open('app/pages/organization/member/delete.html', 'sm',user,true)">删除</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" boundary-links="true" ></dir-pagination-controls>
+    </div>
+</div>
+</div>

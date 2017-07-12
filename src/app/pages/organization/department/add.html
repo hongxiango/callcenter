@@ -1,0 +1,57 @@
+<div class="modal-content"  >
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title">操作</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="exampleText">名称</label>
+            <input type="text" class="form-control" ng-model="formData.name">
+        </div>
+        <div class="form-group">
+            <label for="exampleP">部门组长</label>
+            <ui-select multiple ng-model="chargehand.selected"
+                       ng-disabled="false"
+                       class="form-control ">
+                <ui-select-match >
+                    {{$item.username}}
+                </ui-select-match>
+                <ui-select-choices repeat="multi in memberMultipleSelectItems">
+                    {{multi.username}}
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="form-group">
+            <label for="exampleP">部门组长角色级</label>
+            <ui-select multiple ng-model="chargehand_charas.selected"
+                       ng-disabled="false"
+                       class="form-control ">
+                <ui-select-match >
+                    {{$item.name}}
+                </ui-select-match>
+                <ui-select-choices repeat="multi in multipleSelectItems">
+                    {{multi.name}}
+                </ui-select-choices>
+            </ui-select>
+        </div><div class="form-group">
+        <label for="exampleP">部门成员角色集</label>
+        <ui-select multiple ng-model="member_charas.selected"
+                   ng-disabled="false"
+                   class="form-control ">
+            <ui-select-match >
+                {{$item.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="multi in multipleSelectItems">
+                {{multi.name}}
+            </ui-select-choices>
+        </ui-select>
+    </div>
+        <button type="submit" class="btn btn-primary" ng-click = "addUser() ;$dismiss()">提交</button>
+        <button type="submit" class="btn btn-danger" ng-click = "$dismiss()">取消</button>
+        <!--      <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="$dismiss()">Save changes</button>
+              </div>-->
+    </div>
+</div>

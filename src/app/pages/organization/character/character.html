@@ -1,0 +1,42 @@
+<div ba-panel  ba-panel-class="with-scroll" >
+    <div class="add-row-editable-table">
+        <div class="form-group col-sm-3 col-xs-6" >
+            <input  class="form-control"  placeholder="搜索名称" ng-model="name" >
+        </div>
+        <button ng-click="searchUser()" class="btn btn-info">搜索</button>
+        <button class="btn btn-primary" ng-click="open('app/pages/organization/character/delete.html', 'md',user,false)">新增</button>
+    </div>
+    <div ng-if=" users.length">
+        <table class="table table-bordered table-hover table-condensed" >
+            <tr>
+                <td>id</td>
+                <td>名称</td>
+                <td>权限</td>
+                <td>操作</td>
+            </tr>
+            <tr dir-paginate="user in users | itemsPerPage: pageSize"   current-page="current"  total-items = "totalPages" class="editable-row">
+                <td>
+                    {{ user.id}}
+                </td>
+                <td>
+                    <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+                      {{ user.name || 'empty' }}
+                    </span>
+                </td>
+                <td class="select-td">
+                    <span editable-text="user.permission" e-name="permission" e-form="rowform">
+                       {{ user.permission_name || 'empty' }}
+                    </span>
+                </td>
+                <td>
+                    <div class="buttons" ng-show="!rowform.$visible">
+                        <button class="btn btn-primary editable-table-button btn-xs" ng-click="open('app/pages/organization/character/edit.html', 'md',user,true)">编辑</button>
+                        <button class="btn btn-danger editable-table-button btn-xs" ng-click="open('app/pages/organization/character/delete.html', 'sm',user,true)">删除</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" boundary-links="true" ></dir-pagination-controls>
+    </div>
+</div>
+</div>
