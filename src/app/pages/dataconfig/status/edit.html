@@ -1,0 +1,28 @@
+<div class="modal-content"  >
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title">操作</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label >状态名称</label>
+            <input type="text" class="form-control" ng-model="formData.name">
+        </div>
+        <div class="form-group">
+            <label >是否可用</label>
+            <select type="text" class="form-control" ng-model="formData.enable"
+                    ng-options="o.v as o.n for o in [{ n: '是', v: true }, { n: '否', v: false }]"></select>
+        </div>
+        <div class="form-group">
+            <label>父状态名称</label>
+            <select class="form-control selectpicker"  select-async="/data/customerStatus" title="请选择" selectpicker
+                    ng-model="formData.fid">
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" ng-click = "editUser() ;$dismiss()">提交</button>
+        <button type="submit" class="btn btn-danger" ng-click = "$dismiss()">取消</button>
+    </div>
+</div>
