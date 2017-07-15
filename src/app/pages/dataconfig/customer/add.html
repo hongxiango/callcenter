@@ -1,0 +1,73 @@
+<div class="modal-content"  >
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title">操作</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label >字段名称</label>
+            <input type="text" class="form-control" ng-model="formData.name">
+        </div>
+        <div class="form-group">
+            <label >列字段</label>
+            <input type="text" class="form-control" ng-model="formData.field">
+        </div>
+        <div class="form-group">
+            <label >字段类型</label>
+            <select class="form-control selectpicker"  title="请选择" selectpicker ng-model="formData.type"
+                    ng-options="o.v as o.n for o in [{ n: 'char （字符）', v: 'char' }, { n: 'number （数字）', v: 'number' }, { n: 'date（日期）', v: 'date' }, { n: 'list（默认值）', v: 'list' }]">
+            </select>
+        </div>
+        <div class="form-group">
+            <label >默认值</label>
+            <input type="text" class="form-control" ng-model="formData.default_v">
+        </div>
+        <div class="form-group">
+            <label >必填项</label>
+            <select class="form-control selectpicker"  title="请选择" selectpicker ng-model="formData.required"
+                    ng-options="o.v as o.n for o in [{ n: '是', v: true }, { n: '否', v: false }]">
+            </select>
+        </div>
+        <div class="form-group">
+            <label >导入</label>
+            <select class="form-control selectpicker"  title="请选择" selectpicker ng-model="formData.allow_import"
+                    ng-options="o.v as o.n for o in [{ n: '是', v: true }, { n: '否', v:false }]">
+            </select>
+        </div>
+        <div class="form-group">
+            <label >导出</label>
+            <select class="form-control selectpicker"  title="请选择" selectpicker ng-model="formData.allow_export"
+                    ng-options="o.v as o.n for o in [{ n: '是', v: true }, { n: '否', v:false }]">
+            </select>
+        </div>
+        <div class="form-group">
+            <label >列表显示</label>
+            <select class="form-control selectpicker"  title="请选择" selectpicker ng-model="formData.list"
+                    ng-options="o.v as o.n for o in [{ n: '是', v: true }, { n: '否', v: false }]">
+            </select>
+        </div>
+        <div class="form-group">
+            <label >弹屏</label>
+            <select class="form-control selectpicker"  title="请选择" selectpicker ng-model="formData.shells"
+                    ng-options="o.v as o.n for o in [{ n: '是', v: true }, { n: '否', v: false }]">
+            </select>
+        </div>
+        <!--        <div class="form-group">
+                    <label >系统字段</label>
+                    <select class="form-control selectpicker"  title="请选择" selectpicker ng-model="formData.sysfield"
+                            ng-options="o.v as o.n for o in [{ n: '激活', v: true }, { n: '冻结', v: false }]">
+                    </select>
+                </div>-->
+        <div class="form-group">
+            <label >排序</label>
+            <input type="text" class="form-control" ng-model="formData.sort" placeholder="请输入数字">
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click = "addUser() ;$dismiss()">提交</button>
+        <button type="submit" class="btn btn-danger" ng-click = "$dismiss()">取消</button>
+        <!--      <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="$dismiss()">Save changes</button>
+              </div>-->
+    </div>
+</div>

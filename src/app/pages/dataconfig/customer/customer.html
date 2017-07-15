@@ -1,0 +1,96 @@
+<div ba-panel  ba-panel-class="with-scroll" >
+    <div class="add-row-editable-table">
+        <div class="form-group col-sm-3 col-xs-6" >
+            <input  class="form-control"  placeholder="搜索字段名称" ng-model="name" >
+        </div>
+        <button ng-click="searchUser()" class="btn btn-info">搜索</button>
+        <button class="btn btn-primary" ng-click="open('app/pages/dataconfig/customer/add.html', 'md',user,false)">新增</button>
+    </div>
+    <div ng-if=" users.length">
+        <table class="table table-bordered table-hover table-condensed" >
+            <tr>
+                <td>id</td>
+                <td>字段名称</td>
+                <td>列字段</td>
+                <td>字段类型</td>
+                <td>默认值</td>
+                <td>必填项</td>
+                <td>导入</td>
+                <td>导出</td>
+                <td>列表显示</td>
+                <td>弹屏</td>
+                <td>系统字段</td>
+                <td>字段排序</td>
+                <td>操作</td>
+            </tr>
+            <tr dir-paginate="user in users | itemsPerPage: pageSize"   current-page="current"  total-items = "totalPages" class="editable-row">
+                <td>
+                    {{ user.id}}
+                </td>
+                <td>
+                    <span editable-text="user.name" e-name="name" e-form="rowform">
+                      {{ user.name || '空' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.field" e-name="field" e-form="rowform">
+                      {{ user.field || '空' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.type" e-name="type" e-form="rowform">
+                      {{ user.type || '空' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.default_v" e-name="default_v" e-form="rowform">
+                      {{ user.default_v || '空' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.required" e-name="required" e-form="rowform">
+                      {{getBool(user.required) || '空' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.allow_import" e-name="allow_import" e-form="rowform">
+                      {{ getBool(user.allow_import) || '空' }}
+                    </span>
+                </td>
+                <td>
+                    <span editable-text="user.allow_export" e-name="allow_export" e-form="rowform">
+                      {{ getBool(user.allow_export) || '空' }}
+                    </span>
+                </td>
+                <td class="select-td">
+                    <span editable-text="user.list" e-name="list" e-form="rowform">
+                       {{ getBool(user.list) || '空' }}
+                    </span>
+                </td>
+                <td class="select-td">
+                    <span editable-text="user.shells" e-name="shells" e-form="rowform">
+                       {{ getBool(user.shells) || '空' }}
+                    </span>
+                </td>
+                <td class="select-td">
+                    <span editable-text="user.sysfield" e-name="sysfield" e-form="rowform">
+                       {{ getBool(user.sysfield) || '空' }}
+                    </span>
+                </td>
+                <td class="select-td">
+                    <span editable-text="user.sort" e-name="sort" e-form="rowform">
+                       {{ user.sort|| '空' }}
+                    </span>
+                </td>
+                <td>
+                    <div class="buttons" ng-show="!rowform.$visible">
+                        <button class="btn btn-primary editable-table-button btn-xs" ng-click="open('app/pages/dataconfig/customer/edit.html', 'md',user,true)">编辑</button>
+                        <div ng-if="user.sysfield == false"> <button class="btn btn-danger editable-table-button btn-xs" ng-click="open('app/pages/dataconfig/customer/delete.html', 'sm',user,true)">删除</button></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+     <!--   <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" boundary-links="true" ></dir-pagination-controls>-->
+    </div>
+</div>
+</div>
